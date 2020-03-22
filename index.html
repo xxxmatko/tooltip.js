@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>tooltip.js</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css" rel="stylesheet" />
+    <link href="wwwroot/css/tooltip.css" rel="stylesheet" />
+    <style>
+        .icon-block .material-icons {
+            font-size: inherit;
+        }
+
+        pre {
+            border-radius: 3px;
+            -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.12),0 1px 5px 0 rgba(0,0,0,0.2);
+            box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.12),0 1px 5px 0 rgba(0,0,0,0.2);
+        }
+
+        pre code {
+            border-radius: 3px;
+        }
+
+        b code {
+            color: #607d8b;
+        }
+
+        .green b code {
+            color: #e6ee9c;
+        }
+
+        ol {
+            padding: 0;
+            counter-reset: step;
+        }
+
+        ol li {
+            list-style-type: none;
+        }
+
+        ol li + li {
+            margin-top: 2rem;
+        }
+
+        ol li::before {
+            counter-increment: step;
+            content: counter(step);
+            display: block;
+            background: rgba(255, 255, 255, .2);
+            float: left;
+            width: 1.5rem;
+            text-align: center;
+            border-radius: 50%;
+            margin-right: 1rem;
+            -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.12),0 1px 5px 0 rgba(0,0,0,0.2);
+            box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.12),0 1px 5px 0 rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <nav class="transparent z-depth-0" role="navigation">
+        <div class="nav-wrapper container">
+            <ul class="left hide-on-med-and-down">
+                <li>
+                    <a class="waves-effect waves-green btn-flat blue-grey-text" href="#how-to-use-it">How to use it</a>
+                </li>
+                <li>
+                    <a class="waves-effect waves-green btn-flat blue-grey-text" href="#how-it-works">How it works</a>
+                </li>
+                <li>
+                    <a class="waves-effect waves-green btn-flat blue-grey-text" href="#examples">Examples</a>
+                </li>
+                <li>
+                    <a class="waves-effect waves-green btn-flat blue-grey-text" href="#documentation">Documentation</a>
+                </li>                
+            </ul>
+            <ul id="nav-mobile" class="sidenav">
+                <li>
+                    <h3 class="center blue-grey-text">tooltip.js</h3>
+                </li>
+                <li>
+                    <a href="#how-to-use-it">How to use it</a>
+                </li>
+                <li>
+                    <a href="#how-it-works">How it works</a>
+                </li>
+                <li>
+                    <a href="#examples">Examples</a>
+                </li>
+                <li>
+                    <a href="#documentation">Documentation</a>
+                </li>                   
+            </ul>
+            <a href="#" data-target="nav-mobile" class="sidenav-trigger blue-grey-text"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
+    <div class="container">
+        <br>
+        <br>
+        <h1 class="center blue-grey-text">tooltip.js</h1>
+        <p class="center">
+            The simplest HTML tooltip for your web sites
+        </p>
+        <br>
+        <p class="center">
+            <a id="demo1" href="#examples" class="btn-large green waves-effect waves-light tooltip" title="Try it!">
+                <i class="material-icons left">
+                    play_arrow
+                </i>
+                try it!
+            </a>
+            <a class="btn-large blue-grey lighten-3 waves-effect waves-light" href="https://github.com/xxxmatko/tooltip.js" target="_blank" title="Download tooltip.js">
+                <i class="material-icons left">
+                    <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                        <path fill="#fff" d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z" />
+                    </svg>
+                </i>
+                download
+            </a>
+        </p>
+    </div>
+    <br>
+    <br> 
+    <div class="container">
+        <div class="section">
+            <div class="row">
+                <div class="col s12 m4">
+                    <div class="icon-block">
+                        <h2 class="center blue-grey-text">
+                            <i class="material-icons">call_split</i>
+                        </h2>
+                        <h5 class="center">Independent</h5>
+                        <p class="light center">
+                            Unlike the others, <strong>tooltip.js</strong> does not depend on any other library.
+                            Thanks to that, it's really small (2.4 KB of javascript and 1.5 KB of css).
+                        </p>
+                    </div>
+                </div>
+                <div class="col s12 m4">
+                    <div class="icon-block">
+                        <h2 class="center blue-grey-text">
+                            <i class="material-icons">settings</i>
+                        </h2>
+                        <h5 class="center">Easy to Use</h5>
+                        <p class="light center">
+                            Using it is easy, because it does not require any configuration options.
+                            All you need is to add reference for the library to your website.
+                        </p>
+                    </div>                    
+                </div>
+                <div class="col s12 m4">
+                    <div class="icon-block">
+                        <h2 class="center blue-grey-text">
+                            <i class="material-icons">public</i>
+                        </h2>
+                        <h5 class="center">Compatible</h5>
+                        <p class="light center">
+                            Plays well with Firefox, Chrome, Opera, Edge, Safari and even with Internet Explorer.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div id="how-to-use-it" class="green lighten-1 white-text">
+        <div class="container">
+            <div class="section">
+                <div class="row">
+                    <div class="col s12">
+                        <h4>How to use it</h4>
+                        <p>
+                            <b>tooltip.js</b> can be added to your website in two simple steps:
+                        </p>
+                        <ol>
+                            <li>
+                                Include <b><code>tooltip.js</code></b> and <b><code>tooltip.css</code></b>
+                                (or the minified versions for the production) in your page.
+                                <pre><code class="html">&lt;link href="/path/to/styles/tooltip.min.css" rel="stylesheet" /&gt;
+&lt;script src="/path/to/tooltip.min.js"&gt;&lt;/script&gt;</code></pre>
+                            </li>
+                            <li>
+                                Use the <b><code>title</code></b> attribute of an HTML element and mark it with <b><code>.tooltip</code></b>
+                                css class. <b>tooltip.js</b> itself does not require any configuration options, but you can customize
+                                the tooltip position and style with css classes.
+                                Find out more in the <a class="blue-grey-text" href="#how-it-works">How it works</a> section.
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div id="how-it-works">
+        <div class="container">
+            <div class="section">
+                <div class="row">
+                    <div class="col s12">
+                        <h4>How it works</h4>
+                    </div>
+                    <div class="col s12 m6">
+                        <div class="icon-block">
+                            <h2 class="center green-text">
+                                <i class="material-icons">wrap_text</i>
+                            </h2>
+                            <h5 class="center">It's simple</h5>
+                            <p class="light center">
+                                Generally, it uses the <b><code>title</code></b> attribute of the HTML element. The element
+                                must be marked with <b><code>.tooltip</code></b> css class.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col s12 m6">
+                        <div class="icon-block">
+                            <h2 class="center green-text">
+                                <i class="material-icons">extension</i>
+                            </h2>
+                            <h5 class="center">It's customizable</h5>
+                            <p class="light center">
+                                To be simple, tooltip.js does not calculate it's position, it leaves this option to the users.
+                                The position and style can be changed by using predefined css classes.
+                            </p>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div id="examples" class="green lighten-1 white-text">
+        <div class="container">
+            <div class="section">
+                <div class="row">
+                    <div class="col s12">
+                        <h4>Examples</h4>
+                    </div>
+                    <div class="col s12 m6 icon-block">
+                        <h5 id="example-hello-world">
+                            <i class="material-icons">chat_bubble</i>
+                            Hello world
+                        </h5>
+                        <p>
+                            This is a very basic usage of the <b>tooltip.js</b> library,
+                            showing how to apply tooltip for an element and specify its position.
+                        </p>
+                        <a class="btn green lighten-3 waves-effect waves-light" target="_blank" title="Try it!" href="wwwroot/examples/hello-world.html">
+                            <i class="material-icons left">
+                                play_arrow
+                            </i>
+                            try it!
+                        </a>
+                        <a class="btn green lighten-3 waves-effect waves-light" target="_blank" title="Source code" href="https://github.com/xxxmatko/tooltip.js/blob/master/wwwroot/examples/hello-world.html">
+                            <i class="material-icons left">
+                                code
+                            </i>
+                            source
+                        </a>                        
+                    </div>
+                    <div class="col s12 m6 icon-block">
+                        <h5 id="example-working-with-callbacks">
+                            <i class="material-icons">explore</i>
+                            Working with HTML
+                        </h5>
+                        <p>
+                            Sometimes the simple text is not enough. In this example you can se how to use an child element as tooltip source.
+                        </p>
+                        <a class="btn green lighten-3 waves-effect waves-light" target="_blank" title="Try it!" href="wwwroot/examples/html.html">
+                            <i class="material-icons left">
+                                play_arrow
+                            </i>
+                            try it!
+                        </a>
+                        <a class="btn green lighten-3 waves-effect waves-light" target="_blank" title="Source code" href="https://github.com/xxxmatko/tooltip.js/blob/master/wwwroot/examples/html.html">
+                            <i class="material-icons left">
+                                code
+                            </i>
+                            source
+                        </a>                        
+                    </div>                       
+                </div>
+                <div class="row">
+                    <div class="col s12 m6 icon-block">
+                        <h5 id="example-custom-styles">
+                            <i class="material-icons">style</i>
+                            Custom styles
+                        </h5>
+                        <p>
+                            With simplicity in mind, in order to change the visual appearance, all you need is to add your own css rules.
+                        </p>
+                        <a class="btn green lighten-3 waves-effect waves-light" target="_blank" title="Try it!" href="wwwroot/examples/custom-styles.html">
+                            <i class="material-icons left">
+                                play_arrow
+                            </i>
+                            try it!
+                        </a>
+                        <a class="btn green lighten-3 waves-effect waves-light" target="_blank" title="Source code" href="https://github.com/xxxmatko/tooltip.js/blob/master/wwwroot/examples/custom-styles.html">
+                            <i class="material-icons left">
+                                code
+                            </i>
+                            source
+                        </a>                        
+                    </div>
+                </div>                
+            </div>
+        </div>        
+    </div>
+    <br>
+    <br>
+    <div id="documentation">
+        <div class="container">
+            <div class="section">
+                <div class="row">
+                    <div class="col s12">
+                        <h4>Documentation</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m5">
+                        <h5 class="green-text">.tooltip</h5>
+                        <p>
+                            Applied to an HTML element it will transform the title attribute to a tooltip, with the position set to the top.
+                        </p>
+                    </div>
+                    <div class="col s12 m7">
+                        <h6>Example</h6>
+                        <pre><code class="html">&lt;button class=&quot;tooltip&quot;&gt;
+    top
+&lt;/button&gt;</code></pre>
+                    </div>                    
+                </div>
+                <div class="row">
+                    <div class="col s12 m5">
+                        <h5 class="green-text">.tooltip--left</h5>
+                        <p>
+                            Using modifiers you can change the tooltip position.
+                        </p>
+                        <h6>Example</h6>
+                        <ul>
+                            <li>
+                                <b><code>tooltip--top</code></b> Tooltip will appear to the top.
+                            </li>
+                            <li>
+                                <b><code>tooltip--right</code></b> Tooltip will appear to the right.
+                            </li>
+                            <li>
+                                <b><code>tooltip--bottom</code></b> Tooltip will appear to the bottom.
+                            </li>
+                            <li>
+                                <b><code>tooltip--left</code></b> Tooltip will appear to the left.
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col s12 m7">
+                        <h6>Example</h6>
+                        <pre><code class="html">&lt;button class=&quot;tooltip tooltip--right&quot;&gt;
+    top
+&lt;/button&gt;</code></pre>
+                    </div>                    
+                </div>
+                <div class="row">
+                    <div class="col s12 m5">
+                        <h5 id="doc-tutorial" class="green-text">.tooltip__text</h5>
+                        <p>
+                            To use an HTML content for the tooltip text you can use the element selector within the target element.
+                        </p>
+                    </div>
+                    <div class="col s12 m7">
+                        <h6>Example</h6>
+                        <pre><code class="html">&lt;button class=&quot;tooltip&quot;&gt;
+    top
+    &lt;span class=&quot;tooltip__text&quot;&gt;An &lt;b&gt;HTML&lt;/b&gt; content&lt;/span&gt;
+&lt;/button&gt;</code></pre>
+                    </div>                    
+                </div>                 
+            </div>
+        </div>        
+    </div>
+    <footer class="page-footer green">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">tooltip.js</h5>
+                    <p class="grey-text text-lighten-4">
+                        The simplest HTML tooltip for your web sites
+                    </p>
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text">&nbsp;</h5>
+                    <ul>
+                        <li>
+                            <a class="white-text" href="#how-to-use-it">How to use it</a>
+                        </li>
+                        <li>
+                            <a class="white-text" href="#how-it-works">How it works</a>
+                        </li>
+                        <li>
+                            <a class="white-text" href="#examples">Examples</a>
+                        </li>
+                        <li>
+                            <a class="white-text" href="#documentation">Documentation</a>
+                        </li>                         
+                    </ul>
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text">Examples</h5>
+                    <ul>
+                        <li>
+                            <a class="white-text" href="#example-hello-world">Hello world</a>
+                        </li>
+                        <li>
+                            <a class="white-text" href="#example-working-with-callbacks">Working with callbacks</a>
+                        </li>
+                        <li>
+                            <a class="white-text" href="#example-custom-styles">Custom styles</a>
+                        </li>                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                This project by <a class="green-text text-lighten-3" href="https://github.com/xxxmatko">xxxmatko</a> can be found on
+                <a class="green-text text-lighten-3" href="https://github.com/xxxmatko/tooltip.js">GitHub</a>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="wwwroot/js/tooltip.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+
+        $(function() {
+            $(".sidenav").sidenav();
+        });
+    </script>
+</body>
+</html>
