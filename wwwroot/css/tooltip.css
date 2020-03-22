@@ -1,0 +1,99 @@
+/*!
+ * tooltip.js v1.0.0.0322 (https://github.com/xxxmatko/tooltip.js)
+ * Copyright 2020 xxxmatko
+ */
+.tooltip__text {
+  display: none;
+}
+.tooltip-text {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.8);
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #fff;
+  line-height: 1rem;
+  text-transform: none;
+  padding: 0.5rem;
+  z-index: 9999;
+  border-radius: 0.25rem;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  pointer-events: none;
+  opacity: 0;
+  animation-duration: 0.3s;
+  transition: opacity 0.3s ease, transform 0s ease 0.3s;
+}
+.tooltip-text--top {
+  margin-top: -0.5rem;
+}
+.tooltip-text--right {
+  margin-left: 0.5rem;
+}
+.tooltip-text--bottom {
+  margin-top: 0.5rem;
+}
+.tooltip-text--left {
+  margin-left: -0.5rem;
+}
+.tooltip-text--visible {
+  opacity: 1;
+}
+.tooltip-text--visible.tooltip-text--top {
+  transform: translate(-50%, -100%);
+  animation-name: tooltip--top;
+}
+.tooltip-text--visible.tooltip-text--right {
+  transform: translate(0, -50%);
+  animation-name: tooltip--right;
+}
+.tooltip-text--visible.tooltip-text--bottom {
+  transform: translate(-50%, 0%);
+  animation-name: tooltip--bottom;
+}
+.tooltip-text--visible.tooltip-text--left {
+  transform: translate(-100%, -50%);
+  animation-name: tooltip--lef;
+}
+@keyframes tooltip--top {
+  from {
+    transform: translate(-50%, 0);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -100%);
+    opacity: 1;
+  }
+}
+@keyframes tooltip--right {
+  from {
+    transform: translate(-100%, -50%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(0, -50%);
+    opacity: 1;
+  }
+}
+@keyframes tooltip--bottom {
+  from {
+    transform: translate(-50%, -100%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, 0%);
+    opacity: 1;
+  }
+}
+@keyframes tooltip--lef {
+  from {
+    transform: translate(0%, -50%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-100%, -50%);
+    opacity: 1;
+  }
+}
