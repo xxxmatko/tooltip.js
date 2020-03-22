@@ -1,7 +1,7 @@
 {
     // See https://go.microsoft.com/fwlink/?LinkId=733558
     // for the documentation about the tasks.json format
-    // "http://localhost/tutorial.js/${relativeFile}"
+    // "http://localhost/tooltip.js/${relativeFile}"
     // "localhost\\${workspaceRootFolderName}\\${fileBasename}"
     "version": "2.0.0",
     "tasks": [
