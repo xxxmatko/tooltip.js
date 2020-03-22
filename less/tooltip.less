@@ -1,0 +1,127 @@
+/*!
+ * tooltip.js v1.0.0.0 (https://github.com/xxxmatko/tooltip.js)
+ * Copyright 2020 xxxmatko
+ */
+
+ @bg-color: #000;
+ @fg-color: #fff;
+ 
+ .not-selectable() {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    pointer-events: none;
+}
+
+.tooltip {
+    &__text {
+        display: none;
+    }
+    
+    &-text {
+        position: absolute;
+        background: fade(@bg-color, 80%);
+        text-align: center;
+        font-size: .8rem;
+        font-weight: 500;
+        color: @fg-color;
+        line-height: 1rem;
+        text-transform: none;
+        padding: .5rem;
+        z-index: 9999;
+        border-radius: .25rem;
+        .not-selectable;
+        opacity: 0;
+        animation-duration: .3s;
+        transition: opacity .3s ease, transform 0s ease .3s;
+
+        &--top {
+            margin-top: -.5rem;
+        }
+        
+        &--right {
+            margin-left: .5rem;
+        }
+        
+        &--bottom {
+            margin-top: .5rem;
+        }
+        
+        &--left {
+            margin-left: -.5rem;
+        }
+        
+        &--visible {
+            opacity: 1;
+    
+            &.tooltip-text--top {
+                transform: translate(-50%, -100%);
+                animation-name: tooltip--top;
+            }
+            
+            &.tooltip-text--right {
+                transform: translate(0, -50%);
+                animation-name: tooltip--right;
+            }
+            
+            &.tooltip-text--bottom {
+                transform: translate(-50%, 0%);
+                animation-name: tooltip--bottom;
+            }
+            
+            &.tooltip-text--left {
+                transform: translate(-100%, -50%);
+                animation-name: tooltip--lef;
+            }
+        }
+    }
+}
+
+@keyframes tooltip--top {
+    from {
+        transform: translate(-50%, 0);
+        opacity: 0;
+    }
+
+    to {
+        transform: translate(-50%, -100%);
+        opacity: 1;
+    }
+}
+
+@keyframes tooltip--right {
+    from {
+        transform: translate(-100%, -50%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translate(0, -50%);
+        opacity: 1;
+    }
+}
+
+@keyframes tooltip--bottom {
+    from {
+        transform: translate(-50%, -100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translate(-50%, 0%);
+        opacity: 1;
+    }
+}
+
+@keyframes tooltip--lef {
+    from {
+        transform: translate(0%, -50%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translate(-100%, -50%);
+        opacity: 1;
+    }
+}
